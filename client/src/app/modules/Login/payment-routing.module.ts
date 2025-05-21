@@ -4,8 +4,8 @@ import { ExistingUserComponent } from "./existing-user/existing-user.component";
 import { NewUserComponent } from "./new-user/new-user.component";
 
 const routes=[
-    {path:'signup',component:ExistingUserComponent},
-    {path:'login',component:NewUserComponent},
+    {path:'login',component:ExistingUserComponent},
+    {path:'signup',component:NewUserComponent},
     { path: '**', redirectTo: 'signup' }
 ]
 @NgModule({
