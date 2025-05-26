@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ExistingUserComponent implements OnInit {
   existingUser: boolean = false;
-  message:string="User does not exist yet Check the username and password you entered or register by clicking on login"
+  message:string="User does not exist yet Check the user and password you entered or register by clicking on login"
   formLogin: FormGroup=new FormGroup({})
 
   
@@ -34,13 +34,13 @@ export class ExistingUserComponent implements OnInit {
   }
   existingPassword(password: string) {
 
-    if (this.users?.find((user) => user.Password == password))
+    if (this.users?.find((user) => user.password == password))
       return true
     return false
   }
   entry() {
     console.log(`entry`)
-    this.users?.forEach(e => console.log(`${e.Username} ${e.Password}`))
+    this.users?.forEach(e => console.log(`${e.username} ${e.password}`))
     this.submitted = true
     console.log(`submitted: ${this.submitted}`)
     this.existingUser = this.existingPassword(this.formLogin.controls['Password'].value)

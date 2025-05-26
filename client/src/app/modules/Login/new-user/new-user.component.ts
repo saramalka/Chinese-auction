@@ -13,20 +13,20 @@ import { User } from '../../../domain/user';
 })
 export class NewUserComponent {
   user: User = {
-    Password: ''
+    password: ''
   }
   formUser:User={
-    Password: ''
+    password: ''
   }
   submited: boolean = false
   existingUser: boolean = false
   users: User[] | undefined
   constructor(private _userService: UserService) {
-    // this._userService.getUsersDataFromServer().subscribe(data => {
-    //   this.users = data
-    // }, err => {
-    //   console.log(`error in get users from server: ${err}`)
-    // })
+    this._userService.getUsersDataFromServer().subscribe(data => {
+      this.users = data
+    }, err => {
+      console.log(`error in get users from server: ${err}`)
+    })
   }
   registerForm: FormGroup = new FormGroup({
     "Fullname": new FormControl("", Validators.required),
@@ -39,19 +39,29 @@ export class NewUserComponent {
 
   onRegister() {
     this.submited = true
-    this.existingUser = this.users?.find(user => user.Username === this.registerForm.controls['Username'].value) != null
+    const username = this.registerForm.controls['Username'].value.trim();
+    this.existingUser = this.users?.find(user => user.username === username)!=undefined
+    console.log(`this.existingUser=${this.existingUser}`)
+
+  if (this.existingUser) {
+    console.warn('Username already exists');
+    return;
+  }
+  if (this.registerForm.invalid) {
+    return;
+  }  
     this.formUser=this.registerForm.value
-    this.formUser.Gifts=[]
+    this.formUser.gifts=[]
     console.log('Payload being sent to the server:', this.formUser);
     this.user = this.formUser
   
     this._userService.register(this.user).subscribe(data => {
       if (data)
         alert('user rgister succesfull')
-        // this._userService.getUsersDataFromServer().subscribe(data=>{
-        //   this.users=data
-        //   console.log(`add user successful` ,this.users)
-        // })
+        this._userService.getUsersDataFromServer().subscribe(data=>{
+          this.users=data
+          console.log(`add user successful` ,this.users)
+        })
        
     },
       err => {

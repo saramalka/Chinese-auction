@@ -1,10 +1,10 @@
 export interface User {
     
-    Fullname?: string;
-    Username?: string;
-    Email?: string
-    Phone?: string;
-    Password:string
-    Gifts?:string[]
+    fullname?: string;
+    username?: string;
+    email?: string
+    phone?: string;
+    password:string
+    gifts?:string[]
 
 }
