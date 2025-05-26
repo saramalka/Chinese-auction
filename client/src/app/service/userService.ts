@@ -8,28 +8,20 @@ import { User } from '../domain/user';
 export class UserService {
 
     constructor(private _http: HttpClient) { }
+    userUrl:string='/api/Users'
     getUsersDataFromServer(): Observable<User[]> {
-        return this._http.get<User[]>("/api/users")
+        return this._http.get<User[]>(this.userUrl)
     }
-
-    saveUserToServer(user: User): Observable<boolean> {
-        return this._http.post<boolean>("http://localhost:3000/api/users", user)
+    deleteUserFromServer(id: number) {
+        return this._http.delete(this.userUrl + id)
     }
-
-    deleteUserFromServer(user: User) {
-        return this._http.delete("http://localhost:3000/api/users/" + user.id)
-    }
-    editUserFromServer(user: User) {
-        return this._http.put("http://localhost:3000/api/users/" + user.id, user)
-    }
-
     getOneFromServer(id: number): Observable<User> {
-        return this._http.get<User>("http://localhost:3000/api/users/" + id)
+        return this._http.get<User>(this.userUrl + id)
     }
-    post(user: User): Observable<User> {
-        return this._http.post<User>("http://localhost:3000/api/users", user)
+    register(user: User): Observable<User> {
+        return this._http.post<User>(`${this.userUrl}/register`, user)
     }
-    updateProduct(user: User) {
-        return this._http.put<User>("http://localhost:3000/api/users/" + user.id, user)
+    updateUser(id:number,user: User) {
+        return this._http.put<User>(this.userUrl + id, user)
     }
 }

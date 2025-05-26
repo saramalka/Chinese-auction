@@ -4,17 +4,17 @@
         <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
             <div class="flex flex-wrap justify-content-center align-items-center gap-2">
                 <label class="w-6rem">Username</label>
-                <input pInputText id="username" type="text" class="w-12rem" formControlName="username"/>
-                <small *ngIf="submitted && formLogin.controls['username'].errors?.['required']">
+                <input pInputText id="username" type="text" class="w-12rem" formControlName="Username"/>
+                <small *ngIf="submitted && formLogin.controls['Username'].errors?.['required']">
                     Username is required.
                   </small>
             </div>
             <div class="flex flex-wrap justify-content-center align-items-center gap-2">
                 <label class="w-6rem">Password</label>
-                <input pInputText id="password" type="password" class="w-12rem" formControlName="password"/>
+                <input pInputText id="password" type="password" class="w-12rem" formControlName="Password"/>
             </div>
             <p-button type="submit" label="Login" icon="pi pi-user" styleClass="w-10rem mx-auto"/>
-            <small *ngIf="submitted && formLogin.controls['password'].errors?.['required']">
+            <small *ngIf="submitted && formLogin.controls['Password'].errors?.['required']">
                 Password is required.
               </small>
         </div>

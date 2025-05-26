@@ -7,28 +7,29 @@ import { Observable } from 'rxjs';
 export class DonorService {
 
     constructor(private _http: HttpClient) { }
+    donorUrl:string='/api/Donors/'
     getDonorsDataFromServer(): Observable<Donor[]> {
-        return this._http.get<Donor[]>("/api/donors")
+        return this._http.get<Donor[]>(this.donorUrl)
     }
 
     saveDonorToServer(donor: Donor): Observable<boolean> {
-        return this._http.post<boolean>("http://localhost:3000/api/donors", donor)
+        return this._http.post<boolean>(this.donorUrl, donor)
     }
 
     deleteDonorFromServer(donor: Donor) {
-        return this._http.delete("http://localhost:3000/api/donors/" + donor.id)
+        return this._http.delete(this.donorUrl + donor.id)
     }
     editDonorFromServer(donor: Donor) {
-        return this._http.put("http://localhost:3000/api/donors/" + donor.id, donor)
+        return this._http.put(this.donorUrl + donor.id, donor)
     }
 
     getOneFromServer(id: number): Observable<Donor> {
-        return this._http.get<Donor>("http://localhost:3000/api/donors/" + id)
+        return this._http.get<Donor>(this.donorUrl + id)
     }
     post(donor: Donor): Observable<Donor> {
-        return this._http.post<Donor>("http://localhost:3000/api/donors", donor)
+        return this._http.post<Donor>(this.donorUrl, donor)
     }
     updateProduct(donor: Donor) {
-        return this._http.put<Donor>("http://localhost:3000/api/donors/" + donor.id, donor)
+        return this._http.put<Donor>(this.donorUrl+ donor.id, donor)
     }
 }

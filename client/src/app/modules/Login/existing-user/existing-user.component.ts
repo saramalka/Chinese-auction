@@ -21,8 +21,8 @@ export class ExistingUserComponent implements OnInit {
   ngOnInit(): void {
     this.existingUser=false
     this.formLogin= new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+      Username: new FormControl('', [Validators.required]),
+      Password: new FormControl('', [Validators.required])
     });
     this.userService.getUsersDataFromServer().subscribe(data => {
       this.users = data;
@@ -34,16 +34,16 @@ export class ExistingUserComponent implements OnInit {
   }
   existingPassword(password: string) {
 
-    if (this.users?.find((user) => user.password == password))
+    if (this.users?.find((user) => user.Password == password))
       return true
     return false
   }
   entry() {
     console.log(`entry`)
-    this.users?.forEach(e => console.log(`${e.name} ${e.password}`))
+    this.users?.forEach(e => console.log(`${e.Username} ${e.Password}`))
     this.submitted = true
     console.log(`submitted: ${this.submitted}`)
-    this.existingUser = this.existingPassword(this.formLogin.controls['password'].value)
+    this.existingUser = this.existingPassword(this.formLogin.controls['Password'].value)
     
 
   }

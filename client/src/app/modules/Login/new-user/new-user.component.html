@@ -4,22 +4,29 @@
       <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
         <div class="flex flex-wrap justify-content-center align-items-center gap-2">
 
-          <label for="name">User Name</label>
-          <input pInputText id="name" formControlName="name" />
+          <label for="name">Name</label>
+          <input pInputText id="name" formControlName="Name" />
+         
+        </div>
+         <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+
+          <label for="username">User Name</label>
+          <input pInputText id="username" formControlName="Username" />
+           <small *ngIf="submited&& existingUser">Existing username.</small>
          
         </div>
         <div>
           <label for="email">Email</label>
-          <input pInputText id="email" formControlName="email" />
+          <input pInputText id="email" formControlName="Email" />
         </div>
         <div>
           <label for="phone">Phone</label>
-          <p-inputNumber id="phone" formControlName="phone" />
+          <input pInputText id="phone" formControlName="Phone" />
         </div>
         <div>
           <label for="password">Password</label>
-          <p-password id="password" formControlName="password"></p-password>
-          <small *ngIf="submited&& existingUser">Existing password.</small>
+          <p-password id="password" formControlName="Password"></p-password>
+          
         </div>
         <p-button type="submit" severity="info" [disabled]="!registerForm.valid">Register</p-button>
       </div>

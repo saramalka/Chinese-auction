@@ -1,9 +1,10 @@
 export interface User {
-     id?: string;
-    name?: string;
-    email?: string
-    phone?: string;
-    password:string
-    giftList?:string[]
+    
+    Fullname?: string;
+    Username?: string;
+    Email?: string
+    Phone?: string;
+    Password:string
+    Gifts?:string[]
 
 }
