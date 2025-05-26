@@ -10,10 +10,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './existing-user.component.css'
 })
 export class ExistingUserComponent implements OnInit {
+
   existingUser: boolean = false;
   message:string="User does not exist yet Check the user and password you entered or register by clicking on login"
   formLogin: FormGroup=new FormGroup({})
-
+  userLogin:User|undefined
   
   constructor(private userService: UserService) { }
   submitted: boolean = false
@@ -32,18 +33,23 @@ export class ExistingUserComponent implements OnInit {
       })
 
   }
-  existingPassword(password: string) {
-
-    if (this.users?.find((user) => user.password == password))
-      return true
-    return false
-  }
+  
   entry() {
-    console.log(`entry`)
-    this.users?.forEach(e => console.log(`${e.username} ${e.password}`))
     this.submitted = true
-    console.log(`submitted: ${this.submitted}`)
-    this.existingUser = this.existingPassword(this.formLogin.controls['Password'].value)
+    this.userLogin=this.formLogin.value
+    
+    if (this.userLogin) {
+  this.userService.login(this.userLogin).subscribe(data=>{
+if(data){
+  console.log(data);
+  
+  this.existingUser=true
+}
+  })
+} else {
+  console.error("UserLogin is undefined!")
+}
+
     
 
   }

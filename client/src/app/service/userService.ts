@@ -21,6 +21,9 @@ export class UserService {
     register(user: User): Observable<User> {
         return this._http.post<User>(`${this.userUrl}/register`, user)
     }
+    login(user:User): Observable<User> {
+        return this._http.post<User>(`${this.userUrl}/login`, user)
+    }
     updateUser(id:number,user: User) {
         return this._http.put<User>(this.userUrl + id, user)
     }
